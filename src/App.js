@@ -13,8 +13,13 @@ function App() {
   const currentView = data.slice(indexOfFirstRow, indexOfLastRow) 
 
   const getData = async () => {
-    let res = await axios.get("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json");
-    setData(res.data);
+    try{
+      let res = await axios.get("https://geektrust.s3-ap-southeast-1.amazonaws.com/adminui-problem/members.json");
+      setData(res.data);
+    }catch(e){
+      console.error("Error fetching the data.")
+    }
+
   }
 
   useEffect(() => {
